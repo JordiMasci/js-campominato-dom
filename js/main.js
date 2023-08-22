@@ -49,6 +49,20 @@ function generaGriglia() {
   }
 }
 
+// Genero un array casuale di 16 numeri
+const arrayCasuale = [];
+for (let i = 0; i < 16; i++) {
+  const numeroCasuale = Math.floor(Math.random() * 100) + 1; // Genera un numero tra 1 e 100
+  arrayCasuale.push(numeroCasuale);
+}
+
+console.log(arrayCasuale);
+
+// Funzione per verificare se un numero è presente nell'array casuale
+function numeroCasualeEsiste(numero) {
+  return arrayCasuale.includes(numero);
+}
+
 function generaCella(index) {
   // creo una cella
   const cell = document.createElement("div");
@@ -63,19 +77,22 @@ function generaCella(index) {
   }
   // inserisco i vari index in HTML
   cell.innerHTML = index;
+
+  //   imposto attributo
+  cell.setAttribute("data-numero", index);
+
   // aggiungo la classe con il click che fa cambiare colore
   cell.addEventListener("click", function () {
-    cell.classList.add("azure");
+
+    const numeroCella = parseInt(cell.getAttribute("data-numero"));
+    if (numeroCasualeEsiste(index)) {
+      cell.classList.add("red");
+    } else {
+      cell.classList.remove("red");
+      cell.classList.add("azure");
+    }
     console.log(index);
   });
 
   grid.append(cell);
 }
-
-const arrayCasuale = [];
-for (let i = 0; i < 16; i++) {
-  const numeroCasuale = Math.floor(Math.random() * 100) + 1; // Genera un numero tra 1 e 100
-  arrayCasuale.push(numeroCasuale);
-}
-
-console.log(arrayCasuale);

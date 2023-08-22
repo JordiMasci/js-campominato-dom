@@ -38,6 +38,10 @@
   background-color: blue;
 }
 
+.red {
+    background-color: red;
+}
+
 #select {
   width: 800px;
 }
