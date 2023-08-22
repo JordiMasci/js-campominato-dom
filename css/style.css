@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#griglia {
+  width: 800px;
+  height: 800px;
+  border: 1px solid black;
+  background-color: lightgrey;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  aspect-ratio: 1;
+  background-color: yellowgreen;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell10 {
+  width: calc(100% / 10);
+}
+
+.cell9 {
+  width: calc(100% / 9);
+}
+
+.cell7 {
+  width: calc(100% / 7);
+}
+
+.azure {
+  background-color: blue;
+}
+
+#select {
+  width: 800px;
+}
