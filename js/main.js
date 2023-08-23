@@ -24,13 +24,21 @@ in cosole con il nukero della cella cliccata:
 //   prendo pulsante
 const button = document.getElementById("pulsante");
 const grid = document.getElementById("griglia");
+const livello = document.getElementById("select");
 
 // creo evento al click
 button.addEventListener("click", function () {
   generaGriglia();
 });
 
-const livello = document.getElementById("select");
+
+livello.addEventListener("change", function () {
+  // Rimuovi le celle esistenti dalla griglia
+  grid.innerHTML = "";
+
+  // Genera la nuova griglia in base al livello selezionato
+  generaGriglia();
+});
 
 // creo funzione da avviare con il click
 function generaGriglia() {
@@ -48,6 +56,7 @@ function generaGriglia() {
     generaCella(index);
   }
 }
+
 
 // Genero un array casuale di 16 numeri
 const arrayCasuale = [];
@@ -83,7 +92,6 @@ function generaCella(index) {
 
   // aggiungo la classe con il click che fa cambiare colore
   cell.addEventListener("click", function () {
-
     const numeroCella = parseInt(cell.getAttribute("data-numero"));
     if (numeroCasualeEsiste(index)) {
       cell.classList.add("red");
