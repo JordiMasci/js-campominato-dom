@@ -26,15 +26,19 @@ const button = document.getElementById("pulsante");
 const grid = document.getElementById("griglia");
 const livello = document.getElementById("select");
 
+let score = 0;
+let gameOver = false;
+
 // creo evento al click
 button.addEventListener("click", function () {
   generaGriglia();
 });
 
-
 livello.addEventListener("change", function () {
   // Rimuovi le celle esistenti dalla griglia
   grid.innerHTML = "";
+  score = 0;
+  gameOver = false;
 
   // Genera la nuova griglia in base al livello selezionato
   generaGriglia();
@@ -56,7 +60,6 @@ function generaGriglia() {
     generaCella(index);
   }
 }
-
 
 // Genero un array casuale di 16 numeri
 const arrayCasuale = [];
@@ -92,14 +95,20 @@ function generaCella(index) {
 
   // aggiungo la classe con il click che fa cambiare colore
   cell.addEventListener("click", function () {
-    const numeroCella = parseInt(cell.getAttribute("data-numero"));
-    if (numeroCasualeEsiste(index)) {
-      cell.classList.add("red");
-    } else {
-      cell.classList.remove("red");
-      cell.classList.add("azure");
+    if (!gameOver && !cell.classList.contains("selected")) {
+      const numeroCella = parseInt(cell.getAttribute("data-numero"));
+
+      if (numeroCasualeEsiste(numeroCella)) {
+        cell.classList.add("red");
+        gameOver = true;
+        alert(`Hai perso! Punteggio: ${score}`);
+      } else {
+        cell.classList.add("azure");
+        cell.classList.add("selected");
+        score++;
+        console.log(`Punteggio attuale:` + score);
+      }
     }
-    console.log(index);
   });
 
   grid.append(cell);
